@@ -1,10 +1,13 @@
-import java.io.*;
-import java.util.*;
+package CF_800;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 import static java.lang.Integer.parseInt;
 
-public class CF_1873C {
-
+public class CF_1866A {
     static class FastReader {
         BufferedReader br;
         StringTokenizer st;
@@ -56,29 +59,13 @@ public class CF_1873C {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
         FastReader input = new FastReader();
-        int t = input.nextInt();
 
-        while(t-- > 0) {
-            int points = 0;
-            for(int i = 0; i < 10; i++){
-                String line = input.next();
-                for(int j = 0; j < 10; j++){
-                    if(line.charAt(j) == 'X')   points += findPoints(i, j);
-                }
-            }
-            System.out.println(points);
-        }
-    }
+        int n = input.nextInt();
+        int min = Math.abs(input.nextInt());
+        for(int i = 1; i < n; i++)  min = Math.min(min, Math.abs(input.nextInt()));
 
-    static int findPoints(int i, int j){
-        if(i == 0 || j == 0 || i == 9 || j == 9)    return 1;
-        if(i == 1 || j == 1 || i == 8 || j == 8)    return 2;
-        if(i == 2 || j == 2 || i == 7 || j == 7)    return 3;
-        if(i == 3 || j == 3 || i == 6 || j == 6)    return 4;
-        if(i == 4 || j == 4 || i == 5 || j == 5)    return 5;
-
-        return -1;
+        System.out.println(min);
     }
 }
