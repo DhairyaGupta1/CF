@@ -7,7 +7,7 @@ import java.util.StringTokenizer;
 
 import static java.lang.Integer.parseInt;
 
-public class CF_1845A {
+public class CF_1834A {
     static class FastReader {
         BufferedReader br;
         StringTokenizer st;
@@ -63,33 +63,23 @@ public class CF_1845A {
         FastReader input = new FastReader();
 
         int t = input.nextInt();
-        while(t-- > 0) {
-            int n = input.nextInt(), k = input.nextInt(), x = input.nextInt();
+        while(t-- > 0){
+            int n = input.nextInt();
+            int num1 = 0, min = 0;
+            for(int i = 0; i < n; i++)  num1 += input.nextInt() == 1 ? 1 : 0;
 
-            if((k == 1 || n == 1) && x == 1)    System.out.println("NO");
-            else if(x == 1 && k == 2 && n % 2 == 1) System.out.println("NO");
-            else{
-                System.out.println("YES");
-                if(x != 1){
-                    System.out.println(n);
-                    for(int i = 0; i < n; i++) System.out.print(1 + " ");
-                    System.out.println();
-                }
-                else{
-                    if(n % 2 == 0){
-                        System.out.println(n/2);
-                        for(int i = 0; i < n/2; i++)    System.out.print(2 + " ");
-                        System.out.println();
-                    }
-                    else{
-                        n -= 3;
-                        System.out.println(1 + n/2);
-                        System.out.print(3 + " ");
-                        for(int i = 0; i < n/2; i++)    System.out.print(2 + " ");
-                        System.out.println();
-                    }
-                }
+            int numN1 = n - num1;
+            if(numN1 > num1){
+                int diff = numN1 - num1;
+                min += (int)(Math.ceil((double)diff/2));
+                num1 += min;
+                numN1 -= min;
+//                System.out.println("Min: " + min + " num1 " + num1 + " numN1 " + numN1);
             }
+
+            if(numN1 % 2 == 1)  min++;
+
+            System.out.println(min);
         }
     }
 
