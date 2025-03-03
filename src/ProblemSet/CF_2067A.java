@@ -68,7 +68,6 @@ public class CF_2067A {
             if(diff == 1)   System.out.println("Yes");
             else if((diff + 1) / 9.0 % 1 == 0)  System.out.println("Yes");
             else System.out.println("No");
-
         }
     }
 }
