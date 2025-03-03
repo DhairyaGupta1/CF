@@ -1,11 +1,11 @@
-package CF_900;
+package ProblemSet;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class CF_1675B {
+public class CF_2067A {
     static class FastReader {
         BufferedReader br;
         StringTokenizer st;
@@ -59,32 +59,15 @@ public class CF_1675B {
 
     public static void main(String[] args){
         FastReader input = new FastReader();
+
         int t = input.nextInt();
-
         while(t-- > 0){
-            int n = input.nextInt();
+            int a = input.nextInt(), b = input.nextInt();
 
-            int[] a = new int[n];
-            for(int i = 0; i < n; i++)  a[i] = input.nextInt();
-
-            boolean isPossible = true;
-            int minOps = 0;
-            for(int i = n - 2; i >= 0; i--){
-
-                while(a[i] != 0 && a[i] >= a[i + 1]){
-                    a[i] /= 2;
-                    minOps++;
-                }
-
-                if(a[i] == 0 && i != 0) {
-                    isPossible = false;
-                    break;
-                }
-            }
-
-            if(a[n - 1] == 0 && n != 1) System.out.println(-1);
-            else System.out.println(isPossible ? minOps : -1);
+            int diff = Math.abs(a - b);
+            if(diff == 1)   System.out.println("Yes");
+            else if((diff + 1) / 9.0 % 1 == 0)  System.out.println("Yes");
+            else System.out.println("No");
         }
     }
-
 }
