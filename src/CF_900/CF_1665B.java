@@ -1,11 +1,12 @@
-package ProblemSet;
+package CF_900;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.HashMap;
 import java.util.StringTokenizer;
 
-public class CF_2067A {
+public class CF_1665B {
     static class FastReader {
         BufferedReader br;
         StringTokenizer st;
@@ -59,15 +60,27 @@ public class CF_2067A {
 
     public static void main(String[] args){
         FastReader input = new FastReader();
-
         int t = input.nextInt();
-        while(t-- > 0){
-            int a = input.nextInt(), b = input.nextInt();
 
-            int diff = Math.abs(a - b);
-            if(diff == 1)   System.out.println("Yes");
-            else if((diff + 1) / 9.0 % 1 == 0)  System.out.println("Yes");
-            else System.out.println("No");
+        while(t-- > 0){
+            int n = input.nextInt(), maxFreq = 0;
+            HashMap<Integer, Integer> freq = new HashMap<>();
+
+            for(int i = 0; i < n; i++){
+                int el = input.nextInt();
+                freq.put(el, freq.getOrDefault(el, 0) + 1);
+                maxFreq = Math.max(maxFreq, freq.get(el));
+            }
+
+            if(n == maxFreq)    System.out.println(0);
+            else{
+                double log = n * 1.0 / maxFreq;
+                int exp = (int)Math.ceil(Math.log(log) / Math.log(2));
+                int swaps = n - maxFreq;
+//                System.out.println(swaps + exp + " swaps: " + swaps + " doubled: " + exp);
+                System.out.println(swaps + exp);
+            }
         }
     }
+
 }
