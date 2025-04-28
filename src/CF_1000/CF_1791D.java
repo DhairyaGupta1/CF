@@ -3,10 +3,9 @@ package CF_1000;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.HashMap;
 import java.util.StringTokenizer;
 
-public class CF_1831B {
+public class CF_1791D {
     static class FastReader {
         BufferedReader br;
         StringTokenizer st;
@@ -64,36 +63,29 @@ public class CF_1831B {
 
         while(t-- > 0){
             int n = input.nextInt();
-            int[] a = new int[n], b = new int[n];
-            long max_a = 0, max_b = 0, cnt = 1;
+            String line = input.nextLine();
 
-            for(int i = 0; i < n; i++)  a[i] = input.nextInt();
-            for(int i = 0; i < n; i++)  b[i] = input.nextInt();
+            int[] freq = new int[26], diffChar = new int[n], rdiffChar = new int[n];
 
-            int[] fa = new int[2 * n + 1], fb = new int[2 * n + 1];
-            int x = 1;
-
-            for(int i = 1; i < n; i++){
-                if(a[i] == a[i - 1])    x++;
-                else{
-                    fa[a[i - 1]] = Math.max(fa[a[i - 1]], x);
-                    x = 1;
-                }
+            for(int i = 0; i < n; i++){
+                char c = line.charAt(i);
+                if(freq[c - 'a'] == 0)  diffChar[i] = ((i != 0) ? diffChar[i - 1] + 1 : 1);
+                else    diffChar[i] = diffChar[i - 1];
+                freq[c - 'a']++;
             }
-            fa[a[n - 1]] = Math.max(fa[a[n - 1]], x);
-            x = 1;
+            freq = new int[26];
+            for(int i = n - 1; i >= 0; i--){
+                char c = line.charAt(i);
 
-            for(int i = 1; i < n; i++){
-                if(b[i] == b[i - 1])    x++;
-                else{
-                    fb[b[i - 1]] = Math.max(fb[b[i - 1]], x);
-                    x = 1;
-                }
+                if(freq[c-'a'] == 0)    rdiffChar[i] = ((i != n - 1) ? rdiffChar[i + 1] + 1 : 1);
+                else rdiffChar[i] = rdiffChar[i + 1];
+                freq[c - 'a']++;
             }
-            fb[b[n - 1]] = Math.max(fb[b[n - 1]], x);
+
             long max = 0;
-            for(int i = 0; i <= 2*n; i++){
-                max = Math.max(max, fa[i] + fb[i]);
+
+            for(int i = 0; i < n - 1; i++){
+                max = Math.max(max, diffChar[i] + rdiffChar[i + 1]);
             }
 
             System.out.println(max);
