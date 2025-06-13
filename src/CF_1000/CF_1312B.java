@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class CF_1321B {
+public class CF_1312B {
     static class FastReader {
         BufferedReader br;
         StringTokenizer st;
