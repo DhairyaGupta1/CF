@@ -57,17 +57,22 @@ public class CF_1567B {
         }
     }
 
-    private static void solve(FastReader input){
-        long mex = input.nextInt(), xor = input.nextInt();
-        
+    private static void solve(FastReader input, int[] arr){
+        int mex = input.nextInt(), xor = input.nextInt();
+        int currXor = arr[mex - 1], len = mex;
+
+        if(currXor == xor)  System.out.println(len);
+        else if((currXor ^ mex) == xor) System.out.println(len + 2);
+        else System.out.println(len + 1);
     }
 
     public static void main(String[] args){
         FastReader input = new FastReader();
         int t = input.nextInt();
-
+        int[] arr = new int[1000000];
+        for(int i = 1; i < arr.length; i++) arr[i] = i ^ arr[i - 1];
         while(t-- > 0){
-            solve(input);
+            solve(input, arr);
         }
     }
 
